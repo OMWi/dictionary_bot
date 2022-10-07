@@ -10,10 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import dotenv
+import os
+import sys
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load env variables from file
+dotenv_file = BASE_DIR / ".env"
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
+# telegram
+TG_TOKEN = os.getenv("TG_TOKEN")
+if TG_TOKEN is None:
+    sys.exit(1)
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +39,7 @@ SECRET_KEY = 'django-insecure-5dq7!%!6g*mc86p+p8ksg$xgu2j#65)xc0hap02-f)ehi0(h=y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*",]
 
 
 # Application definition

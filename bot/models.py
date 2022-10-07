@@ -7,6 +7,9 @@ class User(models.Model):
         ADMIN = 1
     role = models.IntegerField(choices=Role.choices)
 
+    def __str__(self):
+        return f'{self.get_role_display()} #{self.chat_id}'
+
 class Word(models.Model):
     text = models.CharField(max_length=1024)
     class WordType(models.IntegerChoices):
@@ -20,8 +23,14 @@ class Word(models.Model):
         INTERJECTION = 7
     type = models.IntegerField(choices=WordType.choices)
 
+    def __str__(self) -> str:
+        return self.text
+
 class Meaning(models.Model):
     text = models.CharField(max_length=1024)
     word = models.ForeignKey(Word, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.text
 
 

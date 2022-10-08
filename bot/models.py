@@ -9,7 +9,7 @@ class User(models.Model):
     role = models.IntegerField(choices=Role.choices)
 
     def __str__(self):
-        return f'{self.get_role_display()} #{self.chat_id}'
+        return f'{self.name}#{self.chat_id} {self.get_role_display()}'
 
 class Word(models.Model):
     text = models.CharField(max_length=1024)

@@ -37,7 +37,10 @@ if TG_TOKEN is None:
 SECRET_KEY = 'django-insecure-5dq7!%!6g*mc86p+p8ksg$xgu2j#65)xc0hap02-f)ehi0(h=y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ.get('DJANGO_DEBUG', default=False) in ('True', 'true', '1', True):
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ["*",]
 

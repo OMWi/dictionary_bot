@@ -2,6 +2,7 @@ from django.db import models
 
 class User(models.Model):
     chat_id = models.IntegerField()
+    name = models.CharField(max_length=128)
     class Role(models.IntegerChoices):
         USER = 0
         ADMIN = 1

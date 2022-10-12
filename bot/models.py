@@ -1,8 +1,9 @@
+from email.policy import default
 from django.db import models
 
 class User(models.Model):
     chat_id = models.IntegerField()
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, default='user')
     class Role(models.IntegerChoices):
         USER = 0
         ADMIN = 1
